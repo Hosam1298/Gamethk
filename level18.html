@@ -190,6 +190,14 @@ let attempts1 = 0;
 let attempts2 = 0;
 let attempts3 = 0;
 let attempts4 = 0;
+function showHint(id, text){
+
+let hint = document.getElementById(id);
+
+hint.style.display = "block";
+hint.innerHTML = text;
+
+}
 playPuzzle();
 updateProgress(5);
 
@@ -211,7 +219,26 @@ document.getElementById("riddle2").style.display="block";
 
 }else{
 
+attempts1++;
+
 wrongAnswer("m1");
+
+if(attempts1 === 3){
+
+showHint(
+"hint1",
+"💡 شيء يزيد عندما تشاركه مع شخص تحبه."
+);
+
+}
+else if(attempts1 === 6){
+
+showHint(
+"hint1",
+"💡 مرتبط بالمشاعر وليس بالأشياء المادية."
+);
+
+}
 
 }
 
@@ -233,7 +260,26 @@ document.getElementById("riddle3").style.display="block";
 
 }else{
 
+attempts2++;
+
 wrongAnswer("m2");
+
+if(attempts2 === 3){
+
+showHint(
+"hint2",
+"💡 هذه الكلمة كانت تمثل النور في المراحل السابقة."
+);
+
+}
+else if(attempts2 === 6){
+
+showHint(
+"hint2",
+"💡 مرتبطة بالقلب والمشاعر."
+);
+
+}
 
 }
 
@@ -255,7 +301,26 @@ document.getElementById("riddle4").style.display="block";
 
 }else{
 
+attempts3++;
+
 wrongAnswer("m3");
+
+if(attempts3 === 3){
+
+showHint(
+"hint3",
+"💡 أساس أي علاقة قوية."
+);
+
+}
+else if(attempts3 === 6){
+
+showHint(
+"hint3",
+"💡 إذا انكسرت يكون إصلاحها صعباً."
+);
+
+}
 
 }
 
@@ -289,7 +354,26 @@ document.getElementById("nextBtn").style.display="block";
 
 }else{
 
+attempts4++;
+
 wrongAnswer("m4");
+
+if(attempts4 === 3){
+
+showHint(
+"hint4",
+"💡 اجمع معاني الأجوبة الثلاثة السابقة."
+);
+
+}
+else if(attempts4 === 6){
+
+showHint(
+"hint4",
+"💡 الكنز الحقيقي ليس شيئاً مادياً."
+);
+
+}
 
 }
 
@@ -299,4 +383,4 @@ wrongAnswer("m4");
 
 </body>
 
-</html>
+</html> 
