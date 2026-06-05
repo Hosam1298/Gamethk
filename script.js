@@ -5,10 +5,10 @@
 
 /* ---------- الأصوات ---------- */
 
-const successSound = new Audio("audio/success.mp3");
-const failSound = new Audio("audio/fail.mp3");
-const puzzleSound = new Audio("audio/puzzle.mp3");
-const finalSound = new Audio("audio/final.mp3");
+const successSound = new Audio("success.mp3");
+const failSound = new Audio("fail.mp3");
+const puzzleSound = new Audio("puzzle.mp3");
+const finalSound = new Audio("final.mp3");
 
 /* ---------- تشغيل صوت ---------- */
 
