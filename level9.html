@@ -205,6 +205,14 @@ let attempts1 = 0;
 let attempts2 = 0;
 let attempts3 = 0;
 let attempts4 = 0;
+function showHint(id, text){
+
+let hint = document.getElementById(id);
+
+hint.style.display = "block";
+hint.innerHTML = text;
+
+}
 playPuzzle();
 updateProgress(5);
 
@@ -354,4 +362,4 @@ else if(attempts4 === 6){
 
 </body>
 
-</html>
+</html> 
