@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌙 مرآة الروح</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.card{
+max-width:800px;
+margin:60px auto;
+padding:30px;
+text-align:center;
+animation:fadeIn 0.8s ease;
+}
+
+.stage-title{
+font-size:2.5rem;
+margin-bottom:20px;
+color:#fff;
+text-shadow:0 0 15px #ff4da6;
+}
+
+.intro{
+font-size:1.2rem;
+opacity:0.85;
+margin-bottom:30px;
+line-height:2;
+}
+
+.question-title{
+font-size:1.3rem;
+margin-bottom:10px;
+opacity:0.9;
+color:#ffb3d9;
+}
+
+.question-text{
+font-size:1.5rem;
+margin-bottom:20px;
+line-height:2;
+}
+
+textarea{
+width:100%;
+height:140px;
+border:none;
+outline:none;
+border-radius:18px;
+padding:15px;
+font-size:16px;
+resize:none;
+background:rgba(255,255,255,0.1);
+color:#fff;
+backdrop-filter: blur(10px);
+}
+
+button{
+margin-top:20px;
+padding:12px 30px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+font-size:16px;
+color:white;
+background:linear-gradient(135deg,#ff4da6,#7a5cff);
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.fade{
+animation:fadeOut 0.6s forwards;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+@keyframes fadeOut{
+to{opacity:0;transform:scale(0.98);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<audio id="sound" src="success.mp3"></audio>
+
+<div class="card" id="card">
+
+<h1 class="stage-title">🌙 مرآة الروح</h1>
+
+<div class="intro" id="intro">
+هنا لا توجد ألغاز...<br>
+ولا توجد إجابات صحيحة أو خاطئة...<br><br>
+فقط ما في قلبك ❤️
+</div>
+
+<div id="content"></div>
+
+<textarea id="answer" placeholder="اكتب ما في قلبك..."></textarea>
+
+<br>
+
+<button onclick="next()">💎 متابعة</button>
+
+</div>
+
+<script>
+
+const questions = [
+
+"إذا كان بإمكانك وصف الحب بكلمة واحدة فقط... فما هي؟",
+"ما الذكرى التي تتمنين الاحتفاظ بها للأبد؟",
+"ما أكثر شيء تخافين خسارته؟",
+"ما الشيء الذي تمنيتِ قوله ولم تقوليه؟",
+"ما الحلم الذي لا تريدين التخلي عنه؟",
+"ما الذي يجعلك تشعرين بالأمان الحقيقي؟",
+"ما أجمل لحظة مرّت عليك مؤخراً؟",
+"ما الصفات التي لا يمكن أن تتخلي عنها في شخص تحبينه؟",
+"لو تحققت أمنية واحدة فقط، ماذا ستكون؟",
+"اكتبي آخر ما في قلبك الآن..."
+];
+
+let i = 0;
+let answers = JSON.parse(localStorage.getItem("love_profile")) || {};
+
+const content = document.getElementById("content");
+const answer = document.getElementById("answer");
+const sound = document.getElementById("sound");
+
+function load(){
+
+content.innerHTML = `
+<div class="question-title">💌 الاعتراف ${i+1}</div>
+<div class="question-text">${questions[i]}</div>
+`;
+
+answer.value = "";
+
+}
+
+function next(){
+
+let val = answer.value.trim();
+
+if(val === ""){
+answer.placeholder = "اكتبي شيئاً من قلبك ❤️";
+return;
+}
+
+// حفظ بصمت
+answers["q"+(i+1)] = val;
+localStorage.setItem("love_profile", JSON.stringify(answers));
+
+// صوت
+sound.play();
+
+// تأثير انتقال
+document.getElementById("card").classList.add("fade");
+
+setTimeout(()=>{
+
+i++;
+
+if(i < questions.length){
+document.getElementById("card").classList.remove("fade");
+load();
+}else{
+finish();
+}
+
+},600);
+
+}
+
+function finish(){
+
+document.getElementById("card").innerHTML = `
+<h1 class="stage-title">❤️ انتهت مرآة الروح</h1>
+
+<div class="intro">
+بعض الكلمات لا تُكتب عبثاً...<br>
+وبعض المشاعر تبقى حتى بعد انتهاء الطريق.<br><br>
+
+🌙 تم حفظ ما في قلبك داخل الرحلة...
+</div>
+
+<button onclick="goNext()">💎 متابعة الرحلة</button>
+`;
+
+}
+
+function goNext(){
+window.location.href = "level12.html";
+}
+
+load();
+
+</script>
+
+</body>
+
+</html>

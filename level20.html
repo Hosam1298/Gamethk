@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Treasure of Love - النهاية</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="startFinal()">
+
+<div class="stars"></div>
+
+<div class="container">
+
+<div class="header">
+
+<h1 class="game-title">
+💎 Treasure of Love
+</h1>
+
+<div class="level-name">
+✨ النهاية
+</div>
+
+</div>
+
+<div class="story-box" id="story">
+
+جارٍ تحليل رحلتك… 💔💖
+
+</div>
+
+<div class="riddle-box">
+
+<div class="riddle-title">
+💎 الكنز الحقيقي
+</div>
+
+<div id="result" class="question">
+
+</div>
+
+</div>
+
+<button class="btn btn-next" onclick="playAgain()">
+إعادة الرحلة 🔁
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+function startFinal(){
+
+let path = JSON.parse(localStorage.getItem("final_path")) || [];
+let heart = JSON.parse(localStorage.getItem("level15_heart")) || [];
+
+let text = "";
+
+/* تحليل بسيط حسب الاختيارات */
+
+if(path.includes("الحب")){
+
+text += "💖 قلبك اختار الحب دائماً… حتى عندما كان مؤلماً.\n\n";
+}
+
+if(path.includes("الذاكرة")){
+
+text += "🧠 أنت لا تنسى بسهولة… الذكريات جزء منك.\n\n";
+}
+
+if(path.includes("النسيان")){
+
+text += "🌫️ تحاول أن تتجاوز الألم، لكن الأثر يبقى.\n\n";
+}
+
+if(path.includes("الصدق")){
+
+text += "🔐 الصدق كان طريقك مهما كانت النتيجة.\n\n";
+}
+
+if(heart.length > 0){
+
+text += "💌 اختياراتك في الرحلة السابقة شكلت شخصيتك العاطفية.\n\n";
+}
+
+/* رسالة نهائية عامة */
+
+text += "✨ الكنز الحقيقي لم يكن شيئاً مادياً...\n";
+text += "بل هو الرحلة نفسها، وما تعلمه قلبك خلالها.\n\n";
+text += "💎 Treasure of Love انتهت… لكنها ستبقى داخلك.";
+
+document.getElementById("result").innerText = text;
+
+/* موسيقى النهاية */
+if(typeof playFinal === "function"){
+playFinal();
+}
+
+}
+
+function playAgain(){
+
+localStorage.clear();
+window.location.href = "intro.html";
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>المرحلة 12 - الذكريات المفقودة</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+
+<div class="header">
+
+<h1 class="game-title" onclick="secretHeart()">
+💎 Treasure of Love
+</h1>
+
+<div class="level-number">
+المرحلة 12 من 20
+</div>
+
+<div class="level-name">
+🔐 الذكريات المفقودة
+</div>
+
+</div>
+
+<div class="progress">
+<div id="progressFill" class="progress-fill"></div>
+</div>
+
+<div class="story-box">
+
+بعض الذكريات لا تختفي…
+
+لكنها تُدفن داخل الزمن.
+
+اليوم ستبحث عن ما نسيته المراحل السابقة.
+
+</div>
+
+<!-- لغز 1 -->
+
+<div class="riddle-box">
+
+<div class="riddle-title">
+🧩 المفتاح الأول
+
+</div>
+
+<div class="question">
+
+في المرحلة الأولى حصلت على قطعة من الكنز…
+
+ما الرمز الذي جمعته هناك؟
+
+(تذكّر بدون الرجوع للملف)
+
+</div>
+
+<input id="a1" type="text">
+
+<button class="btn btn-primary" onclick="check1()">
+تحقق
+</button>
+
+<div id="m1" class="message-box"></div>
+<div
+id="hint1"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- لغز 2 -->
+
+<div id="riddle2" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 ظل الذاكرة
+
+</div>
+
+<div class="question">
+
+في المرحلة 6، ما الكلمة التي كانت تمثل “النور”؟
+
+</div>
+
+<input id="a2" type="text">
+
+<button class="btn btn-primary" onclick="check2()">
+تحقق
+</button>
+
+<div id="m2" class="message-box"></div>
+<div
+id="hint2"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- لغز 3 -->
+
+<div id="riddle3" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 مفتاح القلب
+
+</div>
+
+<div class="question">
+
+في المرحلة 10، ماذا كان اختيارك الأقرب؟
+
+(أبقى معه / أحاول إصلاحه / أعطيه مساحة)
+
+</div>
+
+<input id="a3" type="text">
+
+<button class="btn btn-primary" onclick="check3()">
+تحقق
+</button>
+
+<div id="m3" class="message-box"></div>
+<div
+id="hint3"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- النهاية -->
+
+<div id="riddle4" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🔐 بوابة الذكرى
+
+</div>
+
+<div class="question">
+
+اجمع:
+
+- رمز الكنز
+- كلمة النور
+- اختيار القلب
+
+<br><br>
+
+واكتب الكلمة التي تمثل “ما لم يُنسى”
+
+</div>
+
+<input id="final" type="text">
+
+<button class="btn btn-primary" onclick="finish()">
+فتح البوابة
+</button>
+
+<div id="m4" class="message-box"></div>
+<div
+id="hint1"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- زر المرحلة التالية -->
+
+<button
+id="nextBtn"
+class="btn btn-next"
+onclick="goTo('level13.html')">
+
+المرحلة 13 ❤️
+
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+let attempts1 = 0;
+let attempts2 = 0;
+let attempts3 = 0;
+let attempts4 = 0;
+playPuzzle();
+updateProgress(5);
+
+/* ---------- لغز 1 ---------- */
+
+function check1(){
+
+let val =
+document.getElementById("a1").value.trim();
+
+/* من المرحلة 4: ب2ب */
+if(val === "ب2ب"){
+
+playSuccess();
+
+showMessage("m1","تم تذكّر الرمز 🔐","success");
+
+updateProgress(25);
+
+document.getElementById("riddle2").style.display="block";
+
+}else{
+
+attempts1++;
+wrongAnswer("m1");
+
+if(attempts1 === 3){
+    showHint("hint1","تذكّر الرمز الذي حصلت عليه في المرحلة 4.");
+}
+else if(attempts1 === 6){
+    showHint("hint1","الرمز كان عبارة عن حرف + رقم + حرف.");
+}
+
+}
+
+}
+
+/* ---------- لغز 2 ---------- */
+
+function check2(){
+
+let val =
+document.getElementById("a2").value.trim();
+
+/* المرحلة 6 */
+if(val === "الحب" || val === "النور"){
+
+playSuccess();
+
+showMessage("m2","تذكّر صحيح ✨","success");
+
+updateProgress(50);
+
+document.getElementById("riddle3").style.display="block";
+
+}else{
+
+attempts2++;
+wrongAnswer("m2");
+
+if(attempts2 === 3){
+    showHint("hint2","فكر بالمرحلة 6 وما تمثله من معنى.");
+}
+else if(attempts2 === 6){
+    showHint("hint2","الكلمة مرتبطة بالنور والمشاعر.");
+}
+
+}
+
+}
+
+/* ---------- لغز 3 ---------- */
+
+function check3(){
+
+let val =
+document.getElementById("a3").value.trim();
+
+/* من المرحلة 10 (مرن) */
+if(val.length > 0){
+
+playSuccess();
+
+showMessage("m3","تم استرجاع الذكرى 💖","success");
+
+updateProgress(75);
+
+document.getElementById("riddle4").style.display="block";
+
+}else{
+
+attempts3++;
+wrongAnswer("m3");
+
+if(attempts3 === 3){
+    showHint("hint3","اختياراتك السابقة في القصة لها معنى.");
+}
+else if(attempts3 === 6){
+    showHint("hint3","فكر بما كنت تفعله دائماً في القصة.");
+}
+
+}
+
+}
+
+/* ---------- النهاية ---------- */
+
+function finish(){
+
+let val =
+document.getElementById("final").value.trim();
+
+if(val.length > 0){
+
+playSuccess();
+
+stopPuzzle();
+
+saveTreasurePiece("د");
+
+unlockLevel("level12");
+
+updateProgress(100);
+
+showMessage(
+"m4",
+"تم فتح الذكريات المفقودة 🔐✨",
+"success"
+);
+
+document.getElementById("nextBtn").style.display="block";
+
+}else{
+
+attempts4++;
+wrongAnswer("m4");
+
+if(attempts4 === 3){
+    showHint("hint4","اجمع رموز المراحل السابقة بهدوء.");
+}
+else if(attempts4 === 6){
+    showHint("hint4","الإجابة تعتمد على الذاكرة وليس التخمين.");
+}
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

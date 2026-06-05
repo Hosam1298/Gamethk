@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>المرحلة 16 - انكسار الحقيقة</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+
+<div class="header">
+
+<h1 class="game-title" onclick="secretHeart()">
+💎 Treasure of Love
+</h1>
+
+<div class="level-number">
+المرحلة 16 من 20
+</div>
+
+<div class="level-name">
+🌒 انكسار الحقيقة
+</div>
+
+</div>
+
+<div class="progress">
+<div id="progressFill" class="progress-fill"></div>
+</div>
+
+<div class="story-box">
+
+حين تبدأ الحقيقة بالانكسار…
+
+لا تعود الذكريات كما كانت.
+
+بل تظهر على شكل قطع تحتاج لتجميعها.
+
+</div>
+
+<!-- لغز 1 -->
+
+<div class="riddle-box">
+
+<div class="riddle-title">
+🧩 قطعة من البداية
+
+</div>
+
+<div class="question">
+
+في أول مراحل اللعبة، ما الشيء الذي كان يزيد عندما يُشارك؟
+
+(تلميح: مفهوم عاطفي)
+
+</div>
+
+<input id="a1" type="text">
+
+<button class="btn btn-primary" onclick="check1()">
+تحقق
+</button>
+
+<div id="m1" class="message-box"></div>
+<div
+id="hint1"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- لغز 2 -->
+
+<div id="riddle2" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 قطعة من النور
+
+</div>
+
+<div class="question">
+
+في مرحلة “ذاكرة النور”، ما الكلمة التي كانت تمثل النور؟
+
+</div>
+
+<input id="a2" type="text">
+
+<button class="btn btn-primary" onclick="check2()">
+تحقق
+</button>
+
+<div id="m2" class="message-box"></div>
+<div
+id="hint2"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- لغز 3 -->
+
+<div id="riddle3" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 قطعة من القلب
+
+</div>
+
+<div class="question">
+
+في مرحلة 10، ماذا كان أهم شيء حسب اختياراتك؟
+
+(الثقة / الحب / الاهتمام)
+
+</div>
+
+<input id="a3" type="text">
+
+<button class="btn btn-primary" onclick="check3()">
+تحقق
+</button>
+
+<div id="m3" class="message-box"></div>
+<div
+id="hint3"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- اللغز النهائي -->
+
+<div id="riddle4" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🔐 بوابة الانكسار
+
+</div>
+
+<div class="question">
+
+اجمع:
+
+- ما يزيد بالمشاركة  
+- النور  
+- أهم عنصر في العلاقة  
+
+<br><br>
+
+واكتب الكلمة التي تمثل “الحقيقة الكاملة”
+
+</div>
+
+<input id="final" type="text">
+
+<button class="btn btn-primary" onclick="finish()">
+فتح البوابة
+</button>
+
+<div id="m4" class="message-box"></div>
+<div
+id="hint4"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- زر المرحلة التالية -->
+
+<button
+id="nextBtn"
+class="btn btn-next"
+onclick="goTo('level17.html')">
+
+المرحلة 17 ❤️
+
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+let attempts1 = 0;
+let attempts2 = 0;
+let attempts3 = 0;
+let attempts4 = 0;
+playPuzzle();
+updateProgress(5);
+
+/* ---------- لغز 1 ---------- */
+
+function check1(){
+
+let val =
+document.getElementById("a1").value.trim();
+
+if(val === "الحب" || val === "الاهتمام"){
+
+playSuccess();
+showMessage("m1","قطعة صحيحة 💖","success");
+updateProgress(25);
+document.getElementById("riddle2").style.display="block";
+
+}else{
+
+wrongAnswer("m1");
+
+handleHints(
+attempts1,
+"hint1",
+"💡 تلميح: شيء يزيد بالمشاركة",
+"💡 التلميح الثاني: مرتبط بالمشاعر أكثر من الأشياء"
+);
+
+}
+
+}
+
+/* ---------- لغز 2 ---------- */
+
+function check2(){
+
+let val =
+document.getElementById("a2").value.trim();
+
+if(val === "الحب" || val === "النور"){
+
+playSuccess();
+showMessage("m2","تذكرت النور ✨","success");
+updateProgress(50);
+document.getElementById("riddle3").style.display="block";
+
+}else{
+
+wrongAnswer("m2");
+
+handleHints(
+attempts2,
+"hint2",
+"💡 تلميح: شيء غير مرئي لكنه واضح بالشعور",
+"💡 التلميح الثاني: مرتبط بالقلب والإحساس"
+);
+
+}
+
+}
+
+/* ---------- لغز 3 ---------- */
+
+function check3(){
+
+let val =
+document.getElementById("a3").value.trim();
+
+if(val === "الثقة" || val === "الحب" || val === "الاهتمام"){
+
+playSuccess();
+showMessage("m3","قطعة القلب محفوظة 💔➡️💖","success");
+updateProgress(75);
+document.getElementById("riddle4").style.display="block";
+
+}else{
+
+wrongAnswer("m3");
+
+handleHints(
+attempts3,
+"hint3",
+"💡 تلميح: أساس أي علاقة قوية",
+"💡 التلميح الثاني: إذا انكسرت يصعب ترجع مثل قبل"
+);
+
+}
+
+}
+
+/* ---------- النهاية ---------- */
+
+function finish(){
+
+let val =
+document.getElementById("final").value.trim();
+
+if(val === "الحب" || val === "الحقيقة" || val === "النور"){
+
+playSuccess();
+stopPuzzle();
+saveTreasurePiece("ز");
+unlockLevel("level16");
+updateProgress(100);
+
+showMessage(
+"m4",
+"تم انكسار الحقيقة 🌒✨",
+"success"
+);
+
+document.getElementById("nextBtn").style.display="block";
+
+}else{
+
+wrongAnswer("m4");
+
+handleHints(
+attempts4,
+"hint4",
+"💡 تلميح: اجمع القطع الثلاث السابقة",
+"💡 التلميح الثاني: الجواب كلمة واحدة تمثل كل شيء"
+);
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

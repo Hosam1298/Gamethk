@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>المرحلة السادسة - ذاكرة النور</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+
+<div class="header">
+
+<h1 class="game-title" onclick="secretHeart()">
+💎 Treasure of Love
+</h1>
+
+<div class="level-number">
+المرحلة 6 من 20
+</div>
+
+<div class="level-name">
+✨ ذاكرة النور
+</div>
+
+</div>
+
+<div class="progress">
+<div id="progressFill" class="progress-fill"></div>
+</div>
+
+<div class="story-box">
+
+بعض الذكريات ليست صوراً…
+
+بل شعور لا يختفي مهما مر الزمن.
+
+اليوم ستبحث عن “النور” داخل الذكريات.
+
+</div>
+
+<!-- لغز 1 -->
+
+<div class="riddle-box">
+
+<div class="riddle-title">
+🧩 مفتاح النور
+</div>
+
+<div class="question">
+
+ما الشيء الذي كلما شاركته مع شخص تحبه
+زاد ولم ينقص؟
+
+</div>
+
+<input id="a1" type="text">
+
+<button class="btn btn-primary" onclick="check1()">
+تحقق
+</button>
+
+<div id="m1" class="message-box"></div>
+<div
+id="hint1"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- لغز 2 -->
+
+<div id="riddle2" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 ظل الذاكرة
+</div>
+
+<div class="question">
+
+أنا لا أُرى…
+لكن عندما أختفي يشعر الناس بفراغ كبير.
+
+من أنا؟
+
+</div>
+
+<input id="a2" type="text">
+
+<button class="btn btn-primary" onclick="check2()">
+تحقق
+</button>
+
+<div id="m2" class="message-box"></div>
+<div
+id="hint2"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- لغز 3 -->
+
+<div id="riddle3" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 رمز النور
+
+</div>
+
+<div class="question">
+
+إذا كان:
+
+الحب = نور  
+والنور = قلب  
+فما رمز الحب؟
+
+</div>
+
+<input id="a3" type="text">
+
+<button class="btn btn-primary" onclick="check3()">
+تحقق
+</button>
+
+<div id="m3" class="message-box"></div>
+<div
+id="hint3"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- اللغز النهائي -->
+
+<div id="riddle4" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🔐 بوابة الذاكرة
+
+</div>
+
+<div class="question">
+
+اجمع:
+- الشيء الذي يزيد بالمشاركة
+- الشيء الذي يختفي ويترك فراغ
+- رمز الحب
+
+<br><br>
+
+واكتب كلمة واحدة تمثل “النور الحقيقي”
+
+</div>
+
+<input id="final" type="text">
+
+<button class="btn btn-primary" onclick="finish()">
+فتح البوابة
+</button>
+
+<div id="m4" class="message-box"></div>
+<div
+id="hint4"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- زر المرحلة القادمة -->
+
+<button
+id="nextBtn"
+class="btn btn-next"
+onclick="goTo('level7.html')">
+
+المرحلة السابعة ❤️
+
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+let attempts1 = 0;
+let attempts2 = 0;
+let attempts3 = 0;
+let attempts4 = 0;
+playPuzzle();
+updateProgress(5);
+
+/* ---------- لغز 1 ---------- */
+
+function check1(){
+
+let val =
+document.getElementById("a1").value.trim();
+
+if(val === "الحب"){
+
+playSuccess();
+
+showMessage("m1","صحيح ✨","success");
+
+updateProgress(25);
+
+document.getElementById("riddle2").style.display="block";
+
+}else{
+
+attempts1++;
+wrongAnswer("m1");
+
+if(attempts1 === 3){
+
+showHint("hint1","كلما شاركته مع شخص تحبه لا ينقص بل يزيد.");
+
+}
+
+else if(attempts1 === 6){
+
+showHint("hint1","هذا الشيء مرتبط بالمشاعر وليس المادة.");
+
+}
+
+}
+
+}
+
+/* ---------- لغز 2 ---------- */
+
+function check2(){
+
+let val =
+document.getElementById("a2").value.trim();
+
+if(val === "الذكريات"){
+
+playSuccess();
+
+showMessage("m2","أحسنت 💎","success");
+
+updateProgress(50);
+
+document.getElementById("riddle3").style.display="block";
+
+}else{
+
+attempts2++;
+wrongAnswer("m2");
+
+if(attempts2 === 3){
+
+showHint("hint2","يختفي لكن أثره يبقى.");
+
+}
+
+else if(attempts2 === 6){
+
+showHint("hint2","يرتبط بالماضي وما لا يعود.");
+
+}
+
+}
+
+}
+
+/* ---------- لغز 3 ---------- */
+
+function check3(){
+
+let val =
+document.getElementById("a3").value.trim();
+
+if(val === "القلب"){
+
+playSuccess();
+
+showMessage("m3","رائع ❤️","success");
+
+updateProgress(75);
+
+document.getElementById("riddle4").style.display="block";
+
+}
+}
+else{
+
+attempts3++;
+wrongAnswer("m3");
+
+if(attempts3 === 3){
+
+showHint("hint3","رمز مرتبط بالقلب.");
+
+}
+
+else if(attempts3 === 6){
+
+showHint("hint3","الحب = نور = قلب... فكر بالعكس.");
+
+}
+
+}
+
+}
+
+/* ---------- النهاية ---------- */
+
+function finish(){
+
+let val =
+document.getElementById("final").value.trim();
+
+if(val === "النور" || val === "الحب"){
+
+playSuccess();
+
+stopPuzzle();
+
+saveTreasurePiece("ر");
+
+unlockLevel("level6");
+
+updateProgress(100);
+
+showMessage(
+"m4",
+"تم فتح ذاكرة النور ✨❤️",
+"success"
+);
+
+document.getElementById("nextBtn").style.display="block";
+
+}
+else{
+
+attempts4++;
+wrongAnswer("m4");
+
+if(attempts4 === 3){
+
+showHint("hint4","النور الحقيقي ليس شيئاً مادياً.");
+
+}
+
+else if(attempts4 === 6){
+
+showHint("hint4","اجمع المعاني الثلاثة السابقة.");
+
+}
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

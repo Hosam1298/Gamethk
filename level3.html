@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>المرحلة الثالثة - مرآة الأفكار</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+
+<div class="header">
+
+<h1 class="game-title" onclick="secretHeart()">
+💎 Treasure of Love
+</h1>
+
+<div class="level-number">
+المرحلة 3 من 20
+</div>
+
+<div class="level-name">
+🌌 مرآة الأفكار
+</div>
+
+</div>
+
+<div class="progress">
+<div id="progressFill" class="progress-fill"></div>
+</div>
+
+<div class="story-box">
+
+أحياناً لا تكون الإجابة أمامك...
+
+بل داخل طريقة تفكيرك.
+
+كل لغز هنا يكشف جزءاً من الحقيقة.
+
+</div>
+
+<!-- لغز 1 -->
+
+<div class="riddle-box">
+
+<div class="riddle-title">
+🧩 اللغز الأول
+</div>
+
+<div class="question">
+
+كلما زاد... رأيت أقل.
+
+ما هو؟
+
+</div>
+
+<input id="answer1" type="text">
+
+<button class="btn btn-primary" onclick="checkQ1()">
+تحقق
+</button>
+
+<div id="msg1" class="message-box"></div>
+<div
+id="hint1"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- لغز 2 -->
+
+<div id="riddle2" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 اللغز الثاني
+</div>
+
+<div class="question">
+
+أنا أملك مدناً بلا بيوت،
+وأنهاراً بلا ماء،
+وجبالاً بلا صخور.
+
+من أنا؟
+
+</div>
+
+<input id="answer2" type="text">
+
+<button class="btn btn-primary" onclick="checkQ2()">
+تحقق
+</button>
+
+<div id="msg2" class="message-box"></div>
+<div
+id="hint2"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- لغز 3 -->
+
+<div id="riddle3" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 اللغز الثالث
+</div>
+
+<div class="question">
+
+إذا نطقت اسمي اختفيت.
+
+من أنا؟
+
+</div>
+
+<input id="answer3" type="text">
+
+<button class="btn btn-primary" onclick="checkQ3()">
+تحقق
+</button>
+
+<div id="msg3" class="message-box"></div>
+<div
+id="hint3"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- اللغز النهائي -->
+
+<div id="riddle4" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🔐 البوابة الثالثة
+</div>
+
+<div class="question">
+
+حصلت على:
+
+الظلام
+<br>
+الخريطة
+<br>
+الصمت
+
+<br><br>
+
+ما الشيء المشترك بينها؟
+
+</div>
+
+<input id="finalAnswer" type="text">
+
+<button class="btn btn-primary" onclick="finishLevel()">
+فتح البوابة
+</button>
+
+<div id="msg4" class="message-box"></div>
+<div
+id="hint4"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<button
+id="nextBtn"
+class="btn btn-next"
+onclick="goTo('level4.html')">
+
+المرحلة الرابعة ❤️
+
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+let attempts1 = 0;
+let attempts2 = 0;
+let attempts3 = 0;
+let attempts4 = 0;
+function showHint(id, text){
+    const box = document.getElementById(id);
+    box.style.display = "block";
+    box.innerHTML = text;
+}
+playPuzzle();
+
+updateProgress(5);
+
+/* لغز 1 */
+
+function checkQ1(){
+
+let answer =
+document.getElementById("answer1")
+.value
+.trim();
+
+if(answer === "الظلام"){
+
+playSuccess();
+
+showMessage(
+"msg1",
+"صحيح 🌙",
+"success"
+);
+
+updateProgress(25);
+
+document.getElementById("riddle2")
+.style.display="block";
+
+}
+else{
+
+attempts1++;
+wrongAnswer("msg1");
+
+if(attempts1 === 3){
+    showHint("hint1", "💡 كلما زاد أصبح الرؤية أقل.");
+}
+else if(attempts1 === 6){
+    showHint("hint1", "💡 شيء مرتبط بالعين أو الضوء.");
+}
+else if(attempts1 === 9){
+    showHint("hint1", "💡 الجواب هو: الظلام.");
+}
+
+}
+
+}
+
+/* لغز 2 */
+
+function checkQ2(){
+
+let answer =
+document.getElementById("answer2")
+.value
+.trim();
+
+if(
+answer === "الخريطة"
+){
+
+playSuccess();
+
+showMessage(
+"msg2",
+"أحسنت 🗺️",
+"success"
+);
+
+updateProgress(50);
+
+document.getElementById("riddle3")
+.style.display="block";
+
+}
+else{
+
+attempts2++;
+wrongAnswer("msg2");
+
+if(attempts2 === 3){
+    showHint("hint2", "💡 شيء يحتوي عوالم بدون أن تكون حقيقية.");
+}
+else if(attempts2 === 6){
+    showHint("hint2", "💡 موجود في يدك أو هاتفك.");
+}
+else if(attempts2 === 9){
+    showHint("hint2", "💡 الجواب: الخريطة.");
+}
+
+}
+
+/* لغز 3 */
+
+function checkQ3(){
+
+let answer =
+document.getElementById("answer3")
+.value
+.trim();
+
+if(
+answer === "الصمت"
+){
+
+playSuccess();
+
+showMessage(
+"msg3",
+"ممتاز 🤫",
+"success"
+);
+
+updateProgress(75);
+
+document.getElementById("riddle4")
+.style.display="block";
+
+}
+else{
+
+attempts3++;
+wrongAnswer("msg3");
+
+if(attempts3 === 3){
+    showHint("hint3", "💡 إذا نطقت اسمه... يختفي.");
+}
+else if(attempts3 === 6){
+    showHint("hint3", "💡 هو عكس الصوت والكلام.");
+}
+else if(attempts3 === 9){
+    showHint("hint3", "💡 الجواب: الصمت.");
+}
+
+}
+
+}
+
+/* النهاية */
+
+function finishLevel(){
+
+let answer =
+document.getElementById("finalAnswer")
+.value
+.trim();
+
+if(
+answer === "التفكير"
+||
+answer === "العقل"
+){
+
+playSuccess();
+
+stopPuzzle();
+
+saveTreasurePiece("ق");
+
+unlockLevel("level3");
+
+updateProgress(100);
+
+showMessage(
+"msg4",
+"لقد فتحت مرآة الأفكار 🌌",
+"success"
+);
+
+document.getElementById("nextBtn")
+.style.display="block";
+
+}
+else{
+
+attempts4++;
+wrongAnswer("msg4");
+
+if(attempts4 === 3){
+    showHint("hint4", "💡 الثلاث كلمات مرتبطة بالعقل.");
+}
+else if(attempts4 === 6){
+    showHint("hint4", "💡 التفكير يجمعهم كلهم.");
+}
+else if(attempts4 === 9){
+    showHint("hint4", "💡 الجواب: العقل أو التفكير.");
+}
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

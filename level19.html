@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>المرحلة 19 - الاختبار الأخير</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+
+<div class="header">
+
+<h1 class="game-title" onclick="secretHeart()">
+💎 Treasure of Love
+</h1>
+
+<div class="level-number">
+المرحلة 19 من 20
+</div>
+
+<div class="level-name">
+🌑 الاختبار الأخير للقلب
+</div>
+
+</div>
+
+<div class="progress">
+<div id="progressFill" class="progress-fill"></div>
+</div>
+
+<div class="story-box" id="storyBox">
+
+الآن لا يوجد ألغاز…
+
+بل حقيقة واحدة ستحدد النهاية.
+
+</div>
+
+<!-- قرار 1 -->
+
+<div class="riddle-box">
+
+<div class="riddle-title">
+🧩 إذا خُيّرت بين:
+
+</div>
+
+<button class="btn btn-primary" onclick="choice1('الذاكرة')">
+الذاكرة
+</button>
+
+<button class="btn btn-primary" onclick="choice1('الحب')">
+الحب
+</button>
+
+<button class="btn btn-primary" onclick="choice1('النسيان')">
+النسيان
+</button>
+
+<div id="m1" class="message-box"></div>
+
+</div>
+
+<!-- قرار 2 -->
+
+<div id="riddle2" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 ما هو الأهم؟
+
+</div>
+
+<button class="btn btn-primary" onclick="choice2('البقاء')">
+البقاء
+</button>
+
+<button class="btn btn-primary" onclick="choice2('السلام')">
+السلام
+</button>
+
+<button class="btn btn-primary" onclick="choice2('الصدق')">
+الصدق
+</button>
+
+<div id="m2" class="message-box"></div>
+
+</div>
+
+<!-- قرار 3 -->
+
+<div id="riddle3" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 لو انتهت القصة…
+
+</div>
+
+<button class="btn btn-primary" onclick="choice3('أحزن')">
+أحزن
+</button>
+
+<button class="btn btn-primary" onclick="choice3('أبتسم')">
+أبتسم
+</button>
+
+<button class="btn btn-primary" onclick="choice3('أبقى أتذكر')">
+أبقى أتذكر
+</button>
+
+<div id="m3" class="message-box"></div>
+
+</div>
+
+<!-- النهاية -->
+
+<div id="riddle4" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🔐 ختم القلب
+
+</div>
+
+<div class="question">
+
+اكتب كلمة واحدة تمثل “قرارك النهائي”
+
+</div>
+
+<input id="final" type="text">
+
+<button class="btn btn-primary" onclick="finish()">
+إغلاق الاختبار
+</button>
+
+<div id="m4" class="message-box"></div>
+
+</div>
+
+<!-- زر المرحلة النهائية -->
+
+<button
+id="nextBtn"
+class="btn btn-next"
+onclick="goTo('final.html')">
+
+النهاية 💎
+
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+playPuzzle();
+updateProgress(5);
+
+let finalChoices = [];
+
+/* ---------- القرارات ---------- */
+
+function choice1(val){
+
+finalChoices.push(val);
+
+document.getElementById("m1").innerText =
+"اخترت: " + val;
+
+playSuccess();
+
+document.getElementById("riddle2").style.display="block";
+
+}
+
+function choice2(val){
+
+finalChoices.push(val);
+
+document.getElementById("m2").innerText =
+"اخترت: " + val;
+
+playSuccess();
+
+document.getElementById("riddle3").style.display="block";
+
+}
+
+function choice3(val){
+
+finalChoices.push(val);
+
+document.getElementById("m3").innerText =
+"اخترت: " + val;
+
+playSuccess();
+
+document.getElementById("riddle4").style.display="block";
+
+}
+
+/* ---------- النهاية ---------- */
+
+function finish(){
+
+let val = document.getElementById("final").value.trim();
+
+if(val.length > 0){
+
+playSuccess();
+
+stopPuzzle();
+
+/* حفظ مصير النهاية */
+localStorage.setItem("final_path", JSON.stringify(finalChoices));
+
+saveTreasurePiece("ط");
+
+unlockLevel("level19");
+
+updateProgress(100);
+
+showMessage(
+"m4",
+"تم تثبيت القرار النهائي 🌑💎",
+"success"
+);
+
+document.getElementById("nextBtn").style.display="block";
+
+}else{
+
+wrongAnswer("m4");
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

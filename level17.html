@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>المرحلة 17 - نقطة الانهيار</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+
+<div class="header">
+
+<h1 class="game-title" onclick="secretHeart()">
+💎 Treasure of Love
+</h1>
+
+<div class="level-number">
+المرحلة 17 من 20
+</div>
+
+<div class="level-name">
+💔 نقطة الانهيار
+</div>
+
+</div>
+
+<div class="progress">
+<div id="progressFill" class="progress-fill"></div>
+</div>
+
+<div class="story-box" id="storyBox">
+
+وصلت إلى مكان لا يمكن الرجوع منه بسهولة…
+
+هنا ستعرف الحقيقة كما هي… لا كما تتمنى أن تكون.
+
+</div>
+
+<!-- قرار 1 -->
+
+<div class="riddle-box">
+
+<div class="riddle-title">
+🧩 عندما تفقد شخصاً تحبه…
+
+</div>
+
+<button class="btn btn-primary" onclick="choice1('أحاول الرجوع')">
+أحاول الرجوع
+</button>
+
+<button class="btn btn-primary" onclick="choice1('أصمت')">
+أصمت
+</button>
+
+<button class="btn btn-primary" onclick="choice1('أتقبل')">
+أتقبل
+</button>
+
+<div id="m1" class="message-box"></div>
+
+</div>
+
+<!-- قرار 2 -->
+
+<div id="riddle2" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 الحقيقة المؤلمة
+
+</div>
+
+<div class="question">
+
+إذا كان الحب غير متبادل…
+ماذا تفعل؟
+
+</div>
+
+<button class="btn btn-primary" onclick="choice2('أستمر')">
+أستمر
+</button>
+
+<button class="btn btn-primary" onclick="choice2('أبتعد')">
+أبتعد
+</button>
+
+<button class="btn btn-primary" onclick="choice2('أحاول إصلاحه')">
+أحاول إصلاحه
+</button>
+
+<div id="m2" class="message-box"></div>
+
+</div>
+
+<!-- قرار 3 -->
+
+<div id="riddle3" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 الجرح الأخير
+
+</div>
+
+<div class="question">
+
+ما الأصعب بالنسبة لك؟
+
+</div>
+
+<button class="btn btn-primary" onclick="choice3('الخسارة')">
+الخسارة
+</button>
+
+<button class="btn btn-primary" onclick="choice3('الخذلان')">
+الخذلان
+</button>
+
+<button class="btn btn-primary" onclick="choice3('الانتظار')">
+الانتظار
+</button>
+
+<div id="m3" class="message-box"></div>
+
+</div>
+
+<!-- النهاية -->
+
+<div id="riddle4" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🔐 بوابة الانهيار
+
+</div>
+
+<div class="question">
+
+اكتب كلمة واحدة تمثل “ما تبقى منك بعد الألم”
+
+</div>
+
+<input id="final" type="text">
+
+<button class="btn btn-primary" onclick="finish()">
+فتح البوابة
+</button>
+
+<div id="m4" class="message-box"></div>
+
+</div>
+
+<!-- زر المرحلة التالية -->
+
+<button
+id="nextBtn"
+class="btn btn-next"
+onclick="goTo('level18.html')">
+
+المرحلة 18 ❤️
+
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+playPuzzle();
+updateProgress(5);
+
+/* ---------- تخزين المشاعر ---------- */
+
+let breakdown = [];
+
+function choice1(val){
+
+breakdown.push(val);
+
+document.getElementById("m1").innerText =
+"اختيارك: " + val;
+
+playSuccess();
+
+document.getElementById("riddle2").style.display="block";
+
+}
+
+function choice2(val){
+
+breakdown.push(val);
+
+document.getElementById("m2").innerText =
+"اختيارك: " + val;
+
+playSuccess();
+
+document.getElementById("riddle3").style.display="block";
+
+}
+
+function choice3(val){
+
+breakdown.push(val);
+
+document.getElementById("m3").innerText =
+"اختيارك: " + val;
+
+playSuccess();
+
+document.getElementById("riddle4").style.display="block";
+
+}
+
+/* ---------- النهاية ---------- */
+
+function finish(){
+
+let val =
+document.getElementById("final").value.trim();
+
+if(val.length > 0){
+
+playSuccess();
+
+stopPuzzle();
+
+/* حفظ الانهيار العاطفي */
+localStorage.setItem("level17_breakdown", JSON.stringify(breakdown));
+
+saveTreasurePiece("هـ");
+
+unlockLevel("level17");
+
+updateProgress(100);
+
+showMessage(
+"m4",
+"تم تسجيل الانهيار 💔🌑",
+"success"
+);
+
+document.getElementById("nextBtn").style.display="block";
+
+}else{
+
+wrongAnswer("m4");
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

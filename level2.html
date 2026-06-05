@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المرحلة الثانية - ظلال الحقيقة</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+
+<div class="header">
+
+<h1 class="game-title" onclick="secretHeart()">
+💎 Treasure of Love
+</h1>
+
+<div class="level-number">
+المرحلة 2 من 20
+</div>
+
+<div class="level-name">
+🌙 ظلال الحقيقة
+</div>
+
+</div>
+
+<div class="progress">
+<div id="progressFill" class="progress-fill"></div>
+</div>
+
+<div class="story-box">
+
+بعض الأشياء تراها العيون...
+
+لكن أهم الأشياء لا تُرى أبداً.
+
+اليوم ستبحث عن الحقيقة بين الظلال.
+
+</div>
+
+<!-- لغز 1 -->
+
+<div class="riddle-box">
+
+<div class="riddle-title">
+🧩 اللغز الأول
+</div>
+
+<div class="question">
+
+أي شيء يزداد كلما شاركته مع الآخرين؟
+
+</div>
+
+<label class="option">
+<input type="radio" name="q1" value="المال">
+المال
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="المعرفة">
+المعرفة
+</label>
+
+<label class="option">
+<input type="radio" name="q1" value="الملابس">
+الملابس
+</label>
+
+<button class="btn btn-primary" onclick="checkQ1()">
+تحقق
+</button>
+
+<div id="msg1" class="message-box"></div>
+
+<div
+id="hint1"
+class="message-box"
+style="display:none;">
+</div>
+
+</div>
+
+<!-- لغز 2 -->
+
+<div id="riddle2" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 اللغز الثاني
+</div>
+
+<div class="question">
+
+أنا موجود بين شخصين،
+وإذا انكسرت يصعب إصلاحها.
+
+من أنا؟
+
+</div>
+
+<input id="answer2" type="text">
+
+<button class="btn btn-primary" onclick="checkQ2()">
+تحقق
+</button>
+
+<div id="msg2" class="message-box"></div>
+<div
+id="hint2"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- لغز 3 -->
+
+<div id="riddle3" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 اللغز الثالث
+</div>
+
+<div class="question">
+
+ما الشيء الذي تستطيع إعطاءه دون أن تملكه؟
+
+</div>
+
+<input id="answer3" type="text">
+
+<button class="btn btn-primary" onclick="checkQ3()">
+تحقق
+</button>
+
+<div id="msg3" class="message-box"></div>
+<div
+id="hint3"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- اللغز النهائي -->
+
+<div id="riddle4" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🔐 بوابة الحقيقة
+</div>
+
+<div class="question">
+
+حصلت على:
+
+المعرفة
+<br>
+الثقة
+<br>
+النصيحة
+
+<br><br>
+
+ما الشيء الذي يجمعها كلها؟
+
+</div>
+
+<input id="finalAnswer" type="text">
+
+<button class="btn btn-primary" onclick="finishLevel()">
+فتح البوابة
+</button>
+
+<div id="msg4" class="message-box"></div>
+<div
+id="hint4"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<button
+id="nextBtn"
+class="btn btn-next"
+onclick="goTo('level3.html')">
+
+المرحلة الثالثة ❤️
+
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+let attempts1 = 0;
+let attempts2 = 0;
+let attempts3 = 0;
+let attempts4 = 0;
+playPuzzle();
+
+updateProgress(5);
+
+function checkQ1(){
+
+const selected =
+document.querySelector('input[name="q1"]:checked');
+
+if(!selected){
+
+wrongAnswer("msg1");
+return;
+
+}
+
+if(selected.value === "المعرفة"){
+
+playSuccess();
+
+showMessage(
+"msg1",
+"أحسنت ✨",
+"success"
+);
+
+updateProgress(25);
+
+document.getElementById("riddle2").style.display="block";
+
+}
+else{
+
+attempts1++;
+
+wrongAnswer("msg1");
+
+const hintBox =
+document.getElementById("hint1");
+
+if(attempts1 >= 3 && attempts1 < 6){
+
+hintBox.style.display = "block";
+
+hintBox.innerHTML =
+"💡 كلما أعطيت منه للآخرين لم ينقص منك.";
+
+}
+
+else if(attempts1 >= 6){
+
+hintBox.style.display = "block";
+
+hintBox.innerHTML =
+"💡 يتعلق بالتعلم والعقل.";
+
+}
+
+}
+
+}
+
+function checkQ2(){
+
+let answer =
+document.getElementById("answer2")
+.value
+.trim();
+
+if(answer === "الثقة"){
+
+playSuccess();
+
+showMessage(
+"msg2",
+"صحيح ❤️",
+"success"
+);
+
+updateProgress(50);
+
+document.getElementById("riddle3").style.display="block";
+
+}
+else{
+
+attempts2++;
+
+wrongAnswer("msg2");
+
+const hintBox =
+document.getElementById("hint2");
+
+if(attempts2 >= 3 && attempts2 < 6){
+
+hintBox.style.display = "block";
+
+hintBox.innerHTML =
+"💡 موجود بين شخصين.";
+
+}
+
+else if(attempts2 >= 6){
+
+hintBox.style.display = "block";
+
+hintBox.innerHTML =
+"💡 إذا انكسرت يصعب إرجاعها كما كانت.";
+
+}
+
+}
+
+}
+
+function checkQ3(){
+
+let answer =
+document.getElementById("answer3")
+.value
+.trim();
+
+if(answer === "النصيحة"){
+
+playSuccess();
+
+showMessage(
+"msg3",
+"رائع 💎",
+"success"
+);
+
+updateProgress(75);
+
+document.getElementById("riddle4").style.display="block";
+
+}
+else{
+
+attempts3++;
+
+wrongAnswer("msg3");
+
+const hintBox =
+document.getElementById("hint3");
+
+if(attempts3 >= 3 && attempts3 < 6){
+
+hintBox.style.display = "block";
+
+hintBox.innerHTML =
+"💡 تستطيع إعطاءها حتى لو لم تملك الشيء نفسه.";
+
+}
+
+else if(attempts3 >= 6){
+
+hintBox.style.display = "block";
+
+hintBox.innerHTML =
+"💡 كثيراً ما يقدمها الكبار للصغار.";
+
+}
+
+}
+
+}
+
+function finishLevel(){
+
+let answer =
+document.getElementById("finalAnswer")
+.value
+.trim();
+
+if(
+answer === "العطاء"
+||
+answer === "الخير"
+){
+
+playSuccess();
+
+stopPuzzle();
+
+saveTreasurePiece("ب");
+
+unlockLevel("level2");
+
+updateProgress(100);
+
+showMessage(
+"msg4",
+"تم فتح البوابة الثانية 🌙",
+"success"
+);
+
+document.getElementById("nextBtn")
+.style.display="block";
+
+}
+else{
+
+attempts4++;
+
+wrongAnswer("msg4");
+
+const hintBox =
+document.getElementById("hint4");
+
+if(attempts4 >= 3 && attempts4 < 6){
+
+hintBox.style.display = "block";
+
+hintBox.innerHTML =
+"💡 الثلاثة تُقدَّم للآخرين.";
+
+}
+
+else if(attempts4 >= 6){
+
+hintBox.style.display = "block";
+
+hintBox.innerHTML =
+"💡 المعرفة والثقة والنصيحة كلها أشكال من فعل إيجابي.";
+
+}
+
+else if(attempts4 >= 9){
+
+hintBox.style.display = "block";
+
+hintBox.innerHTML =
+"💡 الجواب المقبول: العطاء أو الخير.";
+
+}
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

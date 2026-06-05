@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>المرحلة 15 - اختبار القلب</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+
+<div class="header">
+
+<h1 class="game-title" onclick="secretHeart()">
+💎 Treasure of Love
+</h1>
+
+<div class="level-number">
+المرحلة 15 من 20
+</div>
+
+<div class="level-name">
+🌑 اختبار القلب
+</div>
+
+</div>
+
+<div class="progress">
+<div id="progressFill" class="progress-fill"></div>
+</div>
+
+<div class="story-box" id="storyBox">
+
+أحياناً لا يكون السؤال مهم…
+
+بل ما الذي تشعر به عندما تختار.
+
+</div>
+
+<!-- القرار 1 -->
+
+<div class="riddle-box">
+
+<div class="riddle-title">
+🧩 عندما تشتاق لشخص…
+
+</div>
+
+<button class="btn btn-primary" onclick="choice1('أكتب له')">
+أكتب له
+</button>
+
+<button class="btn btn-primary" onclick="choice1('أنتظر')">
+أنتظر
+</button>
+
+<button class="btn btn-primary" onclick="choice1('أتجاهل الشعور')">
+أتجاهل الشعور
+</button>
+
+<div id="m1" class="message-box"></div>
+
+</div>
+
+<!-- القرار 2 -->
+
+<div id="riddle2" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 عندما تُجرح…
+
+</div>
+
+<button class="btn btn-primary" onclick="choice2('أسامح بسرعة')">
+أسامح بسرعة
+</button>
+
+<button class="btn btn-primary" onclick="choice2('أحتاج وقت')">
+أحتاج وقت
+</button>
+
+<button class="btn btn-primary" onclick="choice2('أبتعد')">
+أبتعد
+</button>
+
+<div id="m2" class="message-box"></div>
+
+</div>
+
+<!-- القرار 3 -->
+
+<div id="riddle3" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 الحب الحقيقي هو…
+
+</div>
+
+<button class="btn btn-primary" onclick="choice3('تضحية')">
+تضحية
+</button>
+
+<button class="btn btn-primary" onclick="choice3('راحة')">
+راحة
+</button>
+
+<button class="btn btn-primary" onclick="choice3('أمان')">
+أمان
+</button>
+
+<div id="m3" class="message-box"></div>
+
+</div>
+
+<!-- النهاية -->
+
+<div id="riddle4" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🔐 بوابة الاختبار
+
+</div>
+
+<div class="question">
+
+اكتب كلمة واحدة تمثل قلبك الآن بعد كل الاختيارات:
+
+</div>
+
+<input id="final" type="text">
+
+<button class="btn btn-primary" onclick="finish()">
+فتح البوابة
+</button>
+
+<div id="m4" class="message-box"></div>
+
+</div>
+
+<!-- زر المرحلة التالية -->
+
+<button
+id="nextBtn"
+class="btn btn-next"
+onclick="goTo('level16.html')">
+
+المرحلة 16 ❤️
+
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+
+playPuzzle();
+updateProgress(5);
+
+/* ---------- تخزين الاختيارات ---------- */
+
+let heartData = [];
+
+function choice1(val){
+
+heartData.push(val);
+
+document.getElementById("m1").innerText =
+"اختيارك: " + val;
+
+playSuccess();
+
+document.getElementById("riddle2").style.display="block";
+
+}
+
+function choice2(val){
+
+heartData.push(val);
+
+document.getElementById("m2").innerText =
+"اختيارك: " + val;
+
+playSuccess();
+
+document.getElementById("riddle3").style.display="block";
+
+}
+
+function choice3(val){
+
+heartData.push(val);
+
+document.getElementById("m3").innerText =
+"اختيارك: " + val;
+
+playSuccess();
+
+document.getElementById("riddle4").style.display="block";
+
+}
+
+/* ---------- النهاية ---------- */
+
+function finish(){
+
+let val =
+document.getElementById("final").value.trim();
+
+if(val.length > 0){
+
+playSuccess();
+
+stopPuzzle();
+
+saveTreasurePiece("ي");
+
+/* نحفظ قلب المرحلة */
+localStorage.setItem("level15_heart", JSON.stringify(heartData));
+
+unlockLevel("level15");
+
+updateProgress(100);
+
+showMessage(
+"m4",
+"تم تسجيل اختبار القلب 🌑💔",
+"success"
+);
+
+document.getElementById("nextBtn").style.display="block";
+
+}else{
+
+wrongAnswer("m4");
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>

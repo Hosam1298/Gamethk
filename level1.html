@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>المرحلة الأولى - بوابة الكنز</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1 class="game-title" onclick="secretHeart()">
+            💎 Treasure of Love
+        </h1>
+
+        <div class="level-number">
+            المرحلة 1 من 20
+        </div>
+
+        <div class="level-name">
+            🔐 بوابة الكنز
+        </div>
+
+    </div>
+
+    <div class="progress">
+
+        <div
+            id="progressFill"
+            class="progress-fill">
+        </div>
+
+    </div>
+
+    <div class="story-box">
+
+        كل كنز يبدأ بمفتاح...
+        <br><br>
+
+        لكن المفتاح الحقيقي لا يُصنع من معدن،
+        بل من الفهم والصبر.
+
+        <br><br>
+
+        لحل هذه المرحلة عليك اجتياز
+        أربع ألغاز مترابطة.
+
+    </div>
+
+    <!-- لغز 1 -->
+
+    <div class="riddle-box">
+
+        <div class="riddle-title">
+            🧩 اللغز الأول
+        </div>
+
+        <div class="question">
+
+            ما الشيء الذي كلما أخذت منه كبر؟
+
+        </div>
+
+        <label class="option">
+            <input type="radio"
+            name="q1"
+            value="البحر">
+            البحر
+        </label>
+
+        <label class="option">
+            <input type="radio"
+            name="q1"
+            value="الحفرة">
+            الحفرة
+        </label>
+
+        <label class="option">
+            <input type="radio"
+            name="q1"
+            value="الجبل">
+            الجبل
+        </label>
+
+        <button
+        class="btn btn-primary"
+        onclick="checkQ1()">
+            تحقق
+        </button>
+
+        <div
+        id="msg1"
+        class="message-box">
+        </div>
+        
+        <div
+        id="hint1"
+        class="message-box"
+        style="display:none;">
+        </div>
+    </div>
+
+    <!-- لغز 2 -->
+
+    <div
+    id="riddle2"
+    class="riddle-box"
+    style="display:none;">
+
+        <div class="riddle-title">
+            🧩 اللغز الثاني
+        </div>
+
+        <div class="question">
+
+            أنا شيء لا يُرى
+            لكن يُشعر به،
+            ويربط بين قلبين.
+
+        </div>
+
+        <input
+        id="answer2"
+        type="text"
+        placeholder="اكتب الجواب">
+
+        <button
+        class="btn btn-primary"
+        onclick="checkQ2()">
+            تحقق
+        </button>
+
+        <div
+        id="msg2"
+        class="message-box">
+        </div>
+        
+        <div
+id="hint2"
+class="message-box"
+style="display:none;">
+</div>
+
+    </div>
+
+    <!-- لغز 3 -->
+
+    <div
+    id="riddle3"
+    class="riddle-box"
+    style="display:none;">
+
+        <div class="riddle-title">
+            🧩 اللغز الثالث
+        </div>
+
+        <div class="question">
+
+            ما الشيء الذي إذا فقدته
+            لا يمكن استرجاعه؟
+
+        </div>
+
+        <input
+        id="answer3"
+        type="text"
+        placeholder="اكتب الجواب">
+
+        <button
+        class="btn btn-primary"
+        onclick="checkQ3()">
+            تحقق
+        </button>
+
+        <div
+        id="msg3"
+        class="message-box">
+        </div>
+        
+        <div
+        id="hint3"
+        class="message-box"
+        style="display:none;">
+          
+        </div>
+
+    </div>
+
+    <!-- لغز 4 -->
+
+    <div
+    id="riddle4"
+    class="riddle-box"
+    style="display:none;">
+
+        <div class="riddle-title">
+            🔐 مفتاح المرحلة
+        </div>
+
+        <div class="question">
+
+            حصلت على ثلاث كلمات:
+
+            <br><br>
+
+            الحفرة
+            <br>
+            الحب
+            <br>
+            الوقت
+
+            <br><br>
+
+            اكتب كلمة السر:
+
+        </div>
+
+        <input
+        id="finalAnswer"
+        type="text"
+        placeholder="كلمة السر">
+
+        <button
+        class="btn btn-primary"
+        onclick="finishLevel()">
+            فتح البوابة
+        </button>
+
+        <div
+        id="msg4"
+        class="message-box">
+        </div>
+        <div
+        id="hint4"
+        class="message-box"
+        style="display:none;">
+          
+        </div>
+
+    </div>
+
+    <!-- زر المرحلة الثانية -->
+
+    <button
+    id="nextBtn"
+    class="btn btn-next"
+    onclick="goTo('level2.html')">
+
+        الانتقال إلى المرحلة الثانية ❤️
+
+    </button>
+    
+    <div id="hint1" class="message-box" style="display:none;"></div>
+    
+    <div id="hint2" class="message-box" style="display:none;"></div>
+    
+    <div id="hint3" class="message-box" style="display:none;"></div>
+    
+    <div id="hint4" class="message-box" style="display:none;"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+  
+let attempts1 = 0;
+let attempts2 = 0;
+let attempts3 = 0;
+let attempts4 = 0;
+
+playPuzzle();
+
+updateProgress(5);
+
+/* ---------------- */
+
+function checkQ1(){
+
+    const selected =
+    document.querySelector(
+    'input[name="q1"]:checked'
+    );
+
+    if(!selected){
+
+        wrongAnswer("msg1");
+
+        return;
+    }
+
+    if(selected.value === "الحفرة"){
+
+        playSuccess();
+
+        showMessage(
+        "msg1",
+        "أحسنت ✨\nلقد حصلت على أول قطعة.",
+        "success"
+        );
+
+        updateProgress(25);
+
+        document
+        .getElementById("riddle2")
+        .style.display = "block";
+
+    }
+    
+else{
+
+    attempts1++;
+
+    wrongAnswer("msg1");
+
+    const hintBox =
+    document.getElementById("hint1");
+
+    if(attempts1 >= 3 && attempts1 < 6){
+
+        hintBox.style.display = "block";
+
+        hintBox.innerHTML =
+        "💡 التلميح: كلما حفرت أكثر أصبح أكبر.";
+
+    }
+
+    else if(attempts1 >= 6){
+
+        hintBox.style.display = "block";
+
+        hintBox.innerHTML =
+        "💡 التلميح الأقوى: شيء يتكون عند الحفر بالأرض.";
+
+    }
+
+}
+
+
+
+}
+
+/* ---------------- */
+
+function checkQ2(){
+
+    const answer =
+    document
+    .getElementById("answer2")
+    .value
+    .trim();
+
+    if(
+        answer === "الحب"
+    ){
+
+        playSuccess();
+
+        showMessage(
+        "msg2",
+        "إجابة صحيحة ❤️",
+        "success"
+        );
+
+        updateProgress(50);
+
+        document
+        .getElementById("riddle3")
+        .style.display = "block";
+
+    }
+
+    else{
+
+    attempts2++;
+
+    wrongAnswer("msg2");
+
+    const hintBox =
+    document.getElementById("hint2");
+
+    if(attempts2 >= 3 && attempts2 < 6){
+
+        hintBox.style.display = "block";
+
+        hintBox.innerHTML =
+        "💡 شيء لا يُرى لكنه يربط بين قلبين.";
+
+    }
+
+    else if(attempts2 >= 6){
+
+        hintBox.style.display = "block";
+
+        hintBox.innerHTML =
+        "💡 يبدأ بحرف (ا).";
+
+    }
+
+}
+
+}
+
+/* ---------------- */
+
+function checkQ3(){
+
+    const answer =
+    document
+    .getElementById("answer3")
+    .value
+    .trim();
+
+    if(
+        answer === "الوقت"
+    ){
+
+        playSuccess();
+
+        showMessage(
+        "msg3",
+        "ممتاز 💎",
+        "success"
+        );
+
+        updateProgress(75);
+
+        document
+        .getElementById("riddle4")
+        .style.display = "block";
+
+    }
+
+else{
+
+    attempts3++;
+
+    wrongAnswer("msg3");
+
+    const hintBox =
+    document.getElementById("hint3");
+
+    if(attempts3 >= 3 && attempts3 < 6){
+
+        hintBox.style.display = "block";
+
+        hintBox.innerHTML =
+        "💡 الجميع يخسره كل ثانية.";
+
+    }
+
+    else if(attempts3 >= 6){
+
+        hintBox.style.display = "block";
+
+        hintBox.innerHTML =
+        "💡 لا يمكن شراؤه أو إرجاعه.";
+
+    }
+
+}
+
+}
+
+/* ---------------- */
+
+function finishLevel(){
+
+    const answer =
+    document
+    .getElementById("finalAnswer")
+    .value
+    .trim();
+
+    if(
+        answer === "الحب"
+    ){
+
+        playSuccess();
+
+        stopPuzzle();
+
+        saveTreasurePiece("ح");
+
+        unlockLevel("level1");
+
+        updateProgress(100);
+
+        showMessage(
+        "msg4",
+        "تم فتح البوابة الأولى ❤️",
+        "success"
+        );
+
+        document
+        .getElementById("nextBtn")
+        .style.display = "block";
+
+    }
+
+else{
+
+    attempts4++;
+
+    wrongAnswer("msg4");
+
+    const hintBox =
+    document.getElementById("hint4");
+
+    if(attempts4 >= 3 && attempts4 < 6){
+
+        hintBox.style.display = "block";
+
+        hintBox.innerHTML =
+        "💡 كلمة السر مرتبطة بالكلمات الثلاث.";
+
+    }
+
+    else if(attempts4 >= 6){
+
+        hintBox.style.display = "block";
+
+        hintBox.innerHTML =
+        "💡 الحفرة والوقت يقودان إلى الشيء الأهم.";
+
+    }
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

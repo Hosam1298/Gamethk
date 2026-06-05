@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>المرحلة 14 - صدى الذكريات</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+
+<div class="header">
+
+<h1 class="game-title" onclick="secretHeart()">
+💎 Treasure of Love
+</h1>
+
+<div class="level-number">
+المرحلة 14 من 20
+</div>
+
+<div class="level-name">
+💔 صدى الذكريات
+</div>
+
+</div>
+
+<div class="progress">
+<div id="progressFill" class="progress-fill"></div>
+</div>
+
+<div class="story-box">
+
+بعض الأصوات لا تُسمع…
+
+لكنها تبقى داخلك كصدى لا ينتهي.
+
+اليوم ستسمع ما لم يُقل.
+
+</div>
+
+<!-- لغز 1 -->
+
+<div class="riddle-box">
+
+<div class="riddle-title">
+🧩 معنى الصدى
+
+</div>
+
+<div class="question">
+
+ما الشيء الذي يعود إليك كلما أعطيته للآخرين؟
+
+(فكر بالمعنى لا بالشكل)
+
+</div>
+
+<input id="a1" type="text">
+
+<button class="btn btn-primary" onclick="check1()">
+تحقق
+</button>
+
+<div id="m1" class="message-box"></div>
+<div
+id="hint1"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- لغز 2 -->
+
+<div id="riddle2" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 ما لا يُقال
+
+</div>
+
+<div class="question">
+
+أي شيء إذا كُسر بين شخصين،
+لا يمكن إصلاحه بسهولة؟
+
+</div>
+
+<input id="a2" type="text">
+
+<button class="btn btn-primary" onclick="check2()">
+تحقق
+</button>
+
+<div id="m2" class="message-box"></div>
+<div
+id="hint2"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- لغز 3 -->
+
+<div id="riddle3" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🧩 الإحساس المخفي
+
+</div>
+
+<div class="question">
+
+شيء لا يُرى لكنه يربط القلوب.
+
+ما هو؟
+
+</div>
+
+<input id="a3" type="text">
+
+<button class="btn btn-primary" onclick="check3()">
+تحقق
+</button>
+
+<div id="m3" class="message-box"></div>
+<div
+id="hint3"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- اللغز النهائي -->
+
+<div id="riddle4" class="riddle-box" style="display:none;">
+
+<div class="riddle-title">
+🔐 بوابة الصدى
+
+</div>
+
+<div class="question">
+
+اجمع:
+
+- الشيء الذي يعود إليك
+- ما لا يُصلح بسهولة
+- ما يربط القلوب
+
+<br><br>
+
+واكتب كلمة واحدة تمثل “جوهر العلاقة”
+
+</div>
+
+<input id="final" type="text">
+
+<button class="btn btn-primary" onclick="finish()">
+فتح البوابة
+</button>
+
+<div id="m4" class="message-box"></div>
+<div
+id="hint4"
+class="message-box"
+style="display:none;">
+</div>
+</div>
+
+<!-- زر المرحلة التالية -->
+
+<button
+id="nextBtn"
+class="btn btn-next"
+onclick="goTo('level15.html')">
+
+المرحلة 15 ❤️
+
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+let attempts1 = 0;
+let attempts2 = 0;
+let attempts3 = 0;
+let attempts4 = 0;
+playPuzzle();
+updateProgress(5);
+
+/* ---------- لغز 1 ---------- */
+
+function check1(){
+
+let val =
+document.getElementById("a1").value.trim();
+
+if(val === "6"){
+
+playSuccess();
+showMessage("m1","صحيح ✨","success");
+updateProgress(25);
+document.getElementById("riddle2").style.display="block";
+
+}else{
+
+wrongAnswer("m1");
+
+handleHints(
+attempts1,
+"hint1",
+"💡 تلميح: السلسلة تمشي بزيادة 2",
+"💡 التلميح الثاني: الرقم بين 4 و 8"
+);
+
+}
+
+}
+
+/* ---------- لغز 2 ---------- */
+
+function check2(){
+
+let val =
+document.getElementById("a2").value.trim();
+
+if(val === "الظلام"){
+
+playSuccess();
+showMessage("m2","صحيح 🌓","success");
+updateProgress(50);
+document.getElementById("riddle3").style.display="block";
+
+}else{
+
+wrongAnswer("m2");
+
+handleHints(
+attempts2,
+"hint2",
+"💡 تلميح: عكس الضوء",
+"💡 التلميح الثاني: شيء لا ترى فيه شيء"
+);
+
+}
+
+}
+
+/* ---------- لغز 3 ---------- */
+
+function check3(){
+
+let val =
+document.getElementById("a3").value.trim();
+
+if(val === "الحب" || val === "الشعور"){
+
+playSuccess();
+showMessage("m3","رائع 💖","success");
+updateProgress(75);
+document.getElementById("riddle4").style.display="block";
+
+}else{
+
+wrongAnswer("m3");
+
+handleHints(
+attempts3,
+"hint3",
+"💡 تلميح: يربط القلوب",
+"💡 التلميح الثاني: ليس شيء مادي"
+);
+
+}
+
+}
+
+/* ---------- النهاية ---------- */
+
+function finish(){
+
+let val =
+document.getElementById("final").value.trim();
+
+if(val === "التوازن" || val === "الانكسار"){
+
+playSuccess();
+stopPuzzle();
+saveTreasurePiece("هـ");
+unlockLevel("level13");
+updateProgress(100);
+
+showMessage(
+"m4",
+"تم عبور بوابة الانكسار 🌌✨",
+"success"
+);
+
+document.getElementById("nextBtn").style.display="block";
+
+}else{
+
+wrongAnswer("m4");
+
+handleHints(
+attempts4,
+"hint4",
+"💡 تلميح: شيء بعد الكسر يرجع التوازن",
+"💡 التلميح الثاني: مرتبط بالاعتدال بين شيئين"
+);
+
+}
+
+}
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
