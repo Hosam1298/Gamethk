@@ -205,6 +205,12 @@ let attempts1 = 0;
 let attempts2 = 0;
 let attempts3 = 0;
 let attempts4 = 0;
+function showHint(id, text){
+    let hint = document.getElementById(id);
+
+    hint.style.display = "block";
+    hint.innerHTML = text;
+}
 playPuzzle();
 updateProgress(5);
 
@@ -225,7 +231,8 @@ updateProgress(25);
 
 document.getElementById("riddle2").style.display="block";
 
-}else{
+}
+else{
 
 attempts1++;
 
@@ -262,7 +269,8 @@ updateProgress(50);
 
 document.getElementById("riddle3").style.display="block";
 
-}else{
+}
+else{
 
 attempts2++;
 
@@ -298,8 +306,7 @@ updateProgress(75);
 document.getElementById("riddle4").style.display="block";
 
 }
-
-}else{
+else{
 
 attempts3++;
 
@@ -315,6 +322,8 @@ else if(attempts3 === 6){
 }
 
 }
+
+
 
 /* ---------- النهاية ---------- */
 
@@ -343,14 +352,15 @@ showMessage(
 
 document.getElementById("nextBtn").style.display="block";
 
-}else{
+}
+else{
 
 attempts4++;
 
 wrongAnswer("m4");
 
 if(attempts4 === 3){
-    showHint("hint4","اجمع: رقم + حرف + رقم.");
+    showHint("hint4","اجمع: حرف + رقم + حرف .");
 }
 else if(attempts4 === 6){
     showHint("hint4","الرمز يحتوي تكرار نفس الحرف.");
@@ -364,4 +374,4 @@ else if(attempts4 === 6){
 
 </body>
 
-</html>
+</html> 
