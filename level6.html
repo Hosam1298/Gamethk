@@ -195,6 +195,14 @@ let attempts1 = 0;
 let attempts2 = 0;
 let attempts3 = 0;
 let attempts4 = 0;
+function showHint(id, text){
+
+let hint = document.getElementById(id);
+
+hint.style.display = "block";
+hint.innerHTML = text;
+
+}
 playPuzzle();
 updateProgress(5);
 
@@ -292,7 +300,6 @@ updateProgress(75);
 document.getElementById("riddle4").style.display="block";
 
 }
-}
 else{
 
 attempts3++;
@@ -303,7 +310,6 @@ if(attempts3 === 3){
 showHint("hint3","رمز مرتبط بالقلب.");
 
 }
-
 else if(attempts3 === 6){
 
 showHint("hint3","الحب = نور = قلب... فكر بالعكس.");
