@@ -194,6 +194,32 @@ let attempts1 = 0;
 let attempts2 = 0;
 let attempts3 = 0;
 let attempts4 = 0;
+function showHint(id, text){
+
+let hint = document.getElementById(id);
+
+hint.style.display = "block";
+hint.innerHTML = text;
+
+}
+function handleHints(attempts, hintId, hint1, hint2){
+
+attempts++;
+
+if(attempts === 3){
+
+showHint(hintId, hint1);
+
+}
+else if(attempts === 6){
+
+showHint(hintId, hint2);
+
+}
+
+return attempts;
+
+}
 playPuzzle();
 updateProgress(5);
 
@@ -215,7 +241,7 @@ document.getElementById("riddle2").style.display="block";
 
 wrongAnswer("m1");
 
-handleHints(
+attempts1 = handleHints(
 attempts1,
 "hint1",
 "💡 تلميح: شيء يزيد بالمشاركة",
@@ -244,7 +270,7 @@ document.getElementById("riddle3").style.display="block";
 
 wrongAnswer("m2");
 
-handleHints(
+attempts2 = handleHints(
 attempts2,
 "hint2",
 "💡 تلميح: شيء غير مرئي لكنه واضح بالشعور",
@@ -273,7 +299,7 @@ document.getElementById("riddle4").style.display="block";
 
 wrongAnswer("m3");
 
-handleHints(
+attempts3 = handleHints(
 attempts3,
 "hint3",
 "💡 تلميح: أساس أي علاقة قوية",
@@ -311,7 +337,7 @@ document.getElementById("nextBtn").style.display="block";
 
 wrongAnswer("m4");
 
-handleHints(
+attempts4 = handleHints(
 attempts4,
 "hint4",
 "💡 تلميح: اجمع القطع الثلاث السابقة",
@@ -326,4 +352,4 @@ attempts4,
 
 </body>
 
-</html>
+</html> 
