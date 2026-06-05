@@ -193,200 +193,123 @@ let attempts1 = 0;
 let attempts2 = 0;
 let attempts3 = 0;
 let attempts4 = 0;
-    
-playPuzzle();
+function showHint(id, text){
+    let hint = document.getElementById(id);
 
+    hint.style.display = "block";
+    hint.innerHTML = text;
+}
+playPuzzle();
 updateProgress(5);
 
 /* لغز 1 */
-
 function checkQ1(){
-
-let answer =
-document.getElementById("answer1")
-.value
-.trim();
+let answer = document.getElementById("answer1").value.trim();
 
 if(answer === "الظلام"){
+    playSuccess();
 
-playSuccess();
+    showMessage("msg1","صحيح 🌙","success");
 
-showMessage(
-"msg1",
-"صحيح 🌙",
-"success"
-);
-
-updateProgress(25);
-
-document.getElementById("riddle2")
-.style.display="block";
-
+    updateProgress(25);
+    document.getElementById("riddle2").style.display="block";
 }
 else{
+    attempts1++;
+    wrongAnswer("msg1");
 
-attempts1++;
-wrongAnswer("msg1");
-
-if(attempts1 === 3){
-    showHint("hint1", "💡 كلما زاد أصبح الرؤية أقل.");
-}
-else if(attempts1 === 6){
-    showHint("hint1", "💡 شيء مرتبط بالعين أو الضوء.");
-}
-else if(attempts1 === 9){
-    showHint("hint1", "💡 الجواب هو: الظلام.");
-}
+    if(attempts1 === 3){
+        showHint("hint1","💡 كلما زاد أصبح الرؤية أقل.");
+    }
+    else if(attempts1 === 6){
+        showHint("hint1","💡 شيء مرتبط بالعين أو الضوء.");
+    }
 
 }
-
 }
 
 /* لغز 2 */
-
 function checkQ2(){
+let answer = document.getElementById("answer2").value.trim();
 
-let answer =
-document.getElementById("answer2")
-.value
-.trim();
+if(answer === "الخريطة"){
+    playSuccess();
 
-if(
-answer === "الخريطة"
-){
+    showMessage("msg2","أحسنت 🗺️","success");
 
-playSuccess();
-
-showMessage(
-"msg2",
-"أحسنت 🗺️",
-"success"
-);
-
-updateProgress(50);
-
-document.getElementById("riddle3")
-.style.display="block";
-
+    updateProgress(50);
+    document.getElementById("riddle3").style.display="block";
 }
 else{
+    attempts2++;
+    wrongAnswer("msg2");
 
-attempts2++;
-wrongAnswer("msg2");
+    if(attempts2 === 3){
+        showHint("hint2","💡 شيء يحتوي عوالم بدون أن تكون حقيقية.");
+    }
+    else if(attempts2 === 6){
+        showHint("hint2","💡 موجود في يدك أو هاتفك.");
+    }
 
-if(attempts2 === 3){
-    showHint("hint2", "💡 شيء يحتوي عوالم بدون أن تكون حقيقية.");
 }
-else if(attempts2 === 6){
-    showHint("hint2", "💡 موجود في يدك أو هاتفك.");
-}
-else if(attempts2 === 9){
-    showHint("hint2", "💡 الجواب: الخريطة.");
-}
-
 }
 
 /* لغز 3 */
-
 function checkQ3(){
+let answer = document.getElementById("answer3").value.trim();
 
-let answer =
-document.getElementById("answer3")
-.value
-.trim();
+if(answer === "الصمت"){
+    playSuccess();
 
-if(
-answer === "الصمت"
-){
+    showMessage("msg3","ممتاز 🤫","success");
 
-playSuccess();
-
-showMessage(
-"msg3",
-"ممتاز 🤫",
-"success"
-);
-
-updateProgress(75);
-
-document.getElementById("riddle4")
-.style.display="block";
-
+    updateProgress(75);
+    document.getElementById("riddle4").style.display="block";
 }
 else{
+    attempts3++;
+    wrongAnswer("msg3");
 
-attempts3++;
-wrongAnswer("msg3");
-
-if(attempts3 === 3){
-    showHint("hint3", "💡 إذا نطقت اسمه... يختفي.");
-}
-else if(attempts3 === 6){
-    showHint("hint3", "💡 هو عكس الصوت والكلام.");
-}
-else if(attempts3 === 9){
-    showHint("hint3", "💡 الجواب: الصمت.");
-}
+    if(attempts3 === 3){
+        showHint("hint3","💡 إذا نطقت اسمه... يختفي.");
+    }
+    else if(attempts3 === 6){
+        showHint("hint3","💡 هو عكس الصوت والكلام.");
+    }
 
 }
-
 }
 
 /* النهاية */
-
 function finishLevel(){
+let answer = document.getElementById("finalAnswer").value.trim();
 
-let answer =
-document.getElementById("finalAnswer")
-.value
-.trim();
+if(answer === "التفكير" || answer === "العقل"){
+    playSuccess();
 
-if(
-answer === "التفكير"
-||
-answer === "العقل"
-){
+    stopPuzzle();
+    saveTreasurePiece("ق");
+    unlockLevel("level3");
 
-playSuccess();
+    updateProgress(100);
 
-stopPuzzle();
+    showMessage("msg4","لقد فتحت مرآة الأفكار 🌌","success");
 
-saveTreasurePiece("ق");
-
-unlockLevel("level3");
-
-updateProgress(100);
-
-showMessage(
-"msg4",
-"لقد فتحت مرآة الأفكار 🌌",
-"success"
-);
-
-document.getElementById("nextBtn")
-.style.display="block";
-
+    document.getElementById("nextBtn").style.display="block";
 }
 else{
+    attempts4++;
+    wrongAnswer("msg4");
 
-attempts4++;
-wrongAnswer("msg4");
-
-if(attempts4 === 3){
-    showHint("hint4", "💡 الثلاث كلمات مرتبطة بالعقل.");
-}
-else if(attempts4 === 6){
-    showHint("hint4", "💡 التفكير يجمعهم كلهم.");
-}
-else if(attempts4 === 9){
-    showHint("hint4", "💡 الجواب: العقل أو التفكير.");
-}
+    if(attempts4 === 3){
+        showHint("hint4","💡 الثلاث كلمات مرتبطة بالعقل.");
+    }
+    else if(attempts4 === 6){
+        showHint("hint4","💡 التفكير يجمعهم كلهم.");
+    }
 
 }
-
 }
-
 </script>
-
 </body>
 </html>
